@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"log"
 	"net/http"
 	"strings"
 
@@ -31,7 +30,7 @@ func main() {
 	r := chi.NewRouter()
 	r.Post("/uppercase", uppercaseHandler.ServeHTTP)
 	r.Post("/count", countHandler.ServeHTTP)
-	log.Fatal(http.ListenAndServe(":3090", nil))
+	http.ListenAndServe(":3090", r)
 }
 
 func decodeUppercaseRequest(_ context.Context, r *http.Request) (interface{}, error) {
